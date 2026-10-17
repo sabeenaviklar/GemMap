@@ -1,7 +1,28 @@
 # 💎 HiddenGems — Visual, Map-First City Discovery Platform
 
 > **Hackathon Theme:** Travel & Tourism / Smart City / Web & UI Innovation  
-> **Target Audience:** College students, budget travelers, backpackers, and curious urban discoverers.
+> **Target Audience:** College students, budget travelers, backpackers, and curious urban discoverers.  
+> **Live Production Deployment:** [https://gem-map.vercel.app/](https://gem-map.vercel.app/)  
+> **Source Code:** [https://github.com/sabeenaviklar/GemMap](https://github.com/sabeenaviklar/GemMap)
+
+---
+
+## 📸 Application Screenshots & UI Showcase
+
+### 1. Home & Featured Neighborhoods
+> Warm retro-modern aesthetic with curated locality cards, natural-language search bar, and verified recommendation tags.
+
+![HiddenGems Home & Featured Neighborhoods](./public/screenshots/landing_page.png)
+
+### 2. Map-First Interactive City Exploration (`/explore`)
+> Split-screen layout combining real-time Leaflet & OpenStreetMap clustering with interactive category filters, budget sliders, GPS distance filtering, and Bayesian Hidden Gem scores.
+
+![HiddenGems Interactive Discovery Map](./public/screenshots/explore_map.png)
+
+### 3. Student & Explorer Authentication (`/login`)
+> Frictionless authentication with JWT in secure `httpOnly` cookies and instant 1-click demo credential auto-fill buttons for judges and evaluators.
+
+![HiddenGems Authentication](./public/screenshots/auth_login.png)
 
 ---
 
