@@ -2,12 +2,18 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 
-const UPLOAD_DIR = path.resolve(process.cwd(), process.env.UPLOAD_DIR || "./uploads");
+const UPLOAD_DIR = process.env.VERCEL
+  ? path.resolve("/tmp")
+  : path.resolve(process.cwd(), process.env.UPLOAD_DIR || "./uploads");
 
 // Ensure upload directory exists
 export function ensureUploadDir(): void {
-  if (!fs.existsSync(UPLOAD_DIR)) {
-    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+  try {
+    if (!fs.existsSync(UPLOAD_DIR)) {
+      fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+    }
+  } catch (err) {
+    console.warn("Could not create upload directory:", err);
   }
 }
 
