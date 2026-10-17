@@ -282,16 +282,23 @@ docker run --rm -v hiddengems_uploads_data:/data -v $(pwd):/backup alpine tar xz
 
 ---
 
-## 📸 Screenshots & UI Previews
-
-*(Placeholders for presentation screenshots)*
-- **Hero & Landing Page**: `[Screenshot: Hero search & category chips]`
-- **Explore Map & Split View**: `[Screenshot: Interactive map pins, category badges, and filter sidebar]`
-- **Hidden Gem Score Breakdown**: `[Screenshot: Bayesian scoring tooltip with component breakdown]`
-- **Add Place Location Picker**: `[Screenshot: Tap-on-map coordinate selection & local photo upload]`
-- **Curated Trail Itinerary**: `[Screenshot: Ordered route map and total budget preview]`
-
----
-
 ## 📜 License
-Open-source hackathon project built for student discovery and urban exploration.
+
+This project is licensed under the **[MIT License](file:///Users/baseethviklar/Documents/project/techformer/LICENSE)** — see the [LICENSE](file:///Users/baseethviklar/Documents/project/techformer/LICENSE) file for full details.
+
+```
+MIT License
+
+Copyright (c) 2026 HiddenGems Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+```
+

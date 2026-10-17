@@ -1,7 +1,7 @@
 {
   "name": "hiddengems",
   "version": "1.0.0",
-  "private": true,
+  "license": "MIT",
   "description": "Visual, map-first city discovery platform for authentic, budget-friendly hidden gems",
   "scripts": {
     "dev": "next dev",
