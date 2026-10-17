@@ -1,0 +1,45 @@
+{
+  "name": "hiddengems",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Visual, map-first city discovery platform for authentic, budget-friendly hidden gems",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed": "node scripts/seed.js",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:seed": "docker compose --profile seed run --rm seed",
+    "docker:dev": "docker compose -f docker-compose.dev.yml up --build",
+    "docker:logs": "docker compose logs -f app"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.11.17",
+    "jose": "^5.9.6",
+    "leaflet": "^1.9.4",
+    "leaflet-defaulticon-compatibility": "^0.1.2",
+    "lucide-react": "^0.460.0",
+    "mongoose": "^8.8.2",
+    "next": "14.2.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
+    "tailwind-merge": "^2.5.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/leaflet": "^1.9.14",
+    "@types/node": "^20.17.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3"
+  }
+}

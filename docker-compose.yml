@@ -1,0 +1,76 @@
+version: "3.8"
+
+services:
+  # MongoDB Database Service
+  mongo:
+    image: mongo:7
+    container_name: hiddengems-mongo
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - hiddengems-net
+
+  # Main Next.js Application Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    container_name: hiddengems-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/hiddengems
+      - JWT_SECRET=${JWT_SECRET:-hiddengems-super-secure-jwt-secret-key-32-chars-long!}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@hiddengems.local}
+      - UPLOAD_DIR=/app/uploads
+      - NEXT_PUBLIC_DEFAULT_CITY=${NEXT_PUBLIC_DEFAULT_CITY:-Mumbai}
+      - NEXT_PUBLIC_DEFAULT_LAT=${NEXT_PUBLIC_DEFAULT_LAT:-19.0760}
+      - NEXT_PUBLIC_DEFAULT_LNG=${NEXT_PUBLIC_DEFAULT_LNG:-72.8777}
+      - PORT=3000
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - uploads-data:/app/uploads
+    networks:
+      - hiddengems-net
+
+  # Database Seeding Service (run with: docker compose --profile seed run --rm seed)
+  seed:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    profiles:
+      - seed
+    container_name: hiddengems-seed
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/hiddengems
+    depends_on:
+      mongo:
+        condition: service_healthy
+    command: ["node", "scripts/seed.js"]
+    networks:
+      - hiddengems-net
+
+volumes:
+  mongo-data:
+    name: hiddengems_mongo_data
+  uploads-data:
+    name: hiddengems_uploads_data
+
+networks:
+  hiddengems-net:
+    driver: bridge

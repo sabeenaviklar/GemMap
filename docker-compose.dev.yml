@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: hiddengems-dev-mongo
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - mongo-dev-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - hiddengems-dev-net
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: hiddengems-dev-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+      - MONGODB_URI=mongodb://mongo:27017/hiddengems
+      - JWT_SECRET=hiddengems-dev-secret-jwt-key
+      - ADMIN_EMAIL=admin@hiddengems.local
+      - UPLOAD_DIR=/app/uploads
+      - NEXT_PUBLIC_DEFAULT_CITY=Mumbai
+      - NEXT_PUBLIC_DEFAULT_LAT=19.0760
+      - NEXT_PUBLIC_DEFAULT_LNG=72.8777
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+      - uploads-dev-data:/app/uploads
+    networks:
+      - hiddengems-dev-net
+
+volumes:
+  mongo-dev-data:
+  uploads-dev-data:
+
+networks:
+  hiddengems-dev-net:
+    driver: bridge
