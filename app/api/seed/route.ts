@@ -518,7 +518,7 @@ export async function GET(req: NextRequest) {
       viewpoint: [
         "https://www.mageba-group.com/sk/data/docs/en/52134/Bandra-Worli-Sea-Link.jpg?v=1.1",
         "https://cf.bstatic.com/xdata/images/hotel/max1024x768/309179823.jpg?k=53b55d5d5014e77e4629c97d3232f10512c5cdd8ec11bac91946ca4caac3dd19&o=",
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUMVb-95oTi_uIreP1DD_n6_taHg0mDbsZG66EqfedyOpzWmRLjw0tYIk&s=10",
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/81/5b/59/very-clean-beach-thanks.jpg?w=900&h=500&s=1",
       ],
       thrift: [

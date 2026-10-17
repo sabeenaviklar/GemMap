@@ -89,7 +89,7 @@ export default function LandingPage() {
       subtitle: "Authentic Chai & Morning Breakfasts",
       category: "Matunga",
       image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUMVb-95oTi_uIreP1DD_n6_taHg0mDbsZG66EqfedyOpzWmRLjw0tYIk&s=10",
     },
     {
       name: "Versova",
