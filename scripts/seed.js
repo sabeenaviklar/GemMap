@@ -534,9 +534,43 @@ async function seed() {
     },
   ];
 
+  const CATEGORY_IMAGES = {
+    food: [
+      "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+    ],
+    study: [
+      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80",
+    ],
+    viewpoint: [
+      "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80",
+    ],
+    thrift: [
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1525562723836-d6571c671f1b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80",
+    ],
+    hangout: [
+      "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+    ],
+  };
+
   const insertedPlaceDocs = [];
 
-  for (const p of rawPlaces) {
+  for (let idx = 0; idx < rawPlaces.length; idx++) {
+    const p = rawPlaces[idx];
     const slug = p.name
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
@@ -555,6 +589,8 @@ async function seed() {
     });
 
     const isVerified = p.visitCount >= 3 || p.upvoteCount >= 5;
+    const pool = CATEGORY_IMAGES[p.category] || CATEGORY_IMAGES.food;
+    const placeImage = pool[idx % pool.length];
 
     const placeDoc = {
       _id: new mongoose.Types.ObjectId(),
@@ -579,7 +615,7 @@ async function seed() {
         evening: p.category === "viewpoint" || p.category === "hangout" ? "high" : "medium",
         night: p.vibeTags.includes("late-night") ? "high" : "low",
       },
-      images: [], // Clean gradient placeholder
+      images: [placeImage],
       createdBy: adminUser._id,
       status: isVerified ? "verified" : "pending",
       upvoteCount: p.upvoteCount,

@@ -68,31 +68,35 @@ export default function LandingPage() {
     { id: "hangout", label: "Arts & Culture", icon: Landmark },
   ];
 
-  // Featured City Neighborhoods row inspired by theme image
+  // Featured City Neighborhoods row with real authentic photography
   const featuredLocalities = [
     {
       name: "Bandra West",
       subtitle: "Vintage By-Lanes & Sea Cliffs",
       category: "Bandra",
-      gradient: "from-[#266B66] to-[#153835]",
+      image:
+        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80",
     },
     {
       name: "Fort Heritage",
       subtitle: "Colonial Book Vaults & Irani Cafes",
       category: "Fort",
-      gradient: "from-[#D96B43] to-[#722E17]",
+      image:
+        "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
     },
     {
       name: "Matunga",
       subtitle: "Authentic Chai & Morning Breakfasts",
       category: "Matunga",
-      gradient: "from-[#2B303A] to-[#16191F]",
+      image:
+        "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80",
     },
     {
       name: "Versova",
       subtitle: "Harbor Sunsets & Quiet Addas",
       category: "Versova",
-      gradient: "from-[#2F8479] to-[#D96B43]",
+      image:
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
     },
   ];
 
@@ -125,20 +129,24 @@ export default function LandingPage() {
             <Link
               key={loc.name}
               href={`/explore?locality=${loc.category}`}
-              className="relative h-44 sm:h-52 rounded-2xl overflow-hidden group shadow-soft border border-[#EAE5DD] dark:border-slate-800 transition-all hover:shadow-card hover:-translate-y-1"
+              className="relative h-44 sm:h-52 rounded-2xl overflow-hidden group shadow-soft border border-[#EAE5DD] dark:border-slate-800 transition-all hover:shadow-card hover:-translate-y-1 block"
             >
-              <div
-                className={`w-full h-full bg-gradient-to-t ${loc.gradient} flex flex-col justify-end p-4 text-white relative`}
-              >
-                <div className="absolute inset-0 bg-black/15 group-hover:bg-black/5 transition-colors" />
-                <div className="relative z-10">
-                  <h3 className="font-extrabold text-lg sm:text-xl tracking-tight leading-tight">
-                    {loc.name}
-                  </h3>
-                  <p className="text-[11px] text-slate-200 mt-0.5 line-clamp-1">
-                    {loc.subtitle}
-                  </p>
-                </div>
+              {/* Actual Neighborhood Photo */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={loc.image}
+                alt={loc.name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              {/* Rich gradient overlay so white text has strong contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10 transition-opacity group-hover:opacity-90" />
+              <div className="relative z-10 w-full h-full flex flex-col justify-end p-4 text-white">
+                <h3 className="font-extrabold text-lg sm:text-xl tracking-tight leading-tight drop-shadow">
+                  {loc.name}
+                </h3>
+                <p className="text-[11px] text-slate-200 mt-0.5 line-clamp-1 drop-shadow">
+                  {loc.subtitle}
+                </p>
               </div>
             </Link>
           ))}

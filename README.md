@@ -173,6 +173,8 @@ For immediate evaluation, the seed script provisions three accounts with differe
 
 ## 📂 Project Architecture
 
+![HiddenGems System Architecture Diagram](./public/architecture_diagram.jpg)
+
 ```
 techformer/
 ├── app/
