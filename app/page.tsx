@@ -68,35 +68,35 @@ export default function LandingPage() {
     { id: "hangout", label: "Arts & Culture", icon: Landmark },
   ];
 
-  // Featured City Neighborhoods row with real authentic photography
+  // Featured City Neighborhoods row with user specified photography
   const featuredLocalities = [
     {
       name: "Bandra West",
       subtitle: "Vintage By-Lanes & Sea Cliffs",
       category: "Bandra",
       image:
-        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80",
+        "https://www.mageba-group.com/sk/data/docs/en/52134/Bandra-Worli-Sea-Link.jpg?v=1.1",
     },
     {
       name: "Fort Heritage",
       subtitle: "Colonial Book Vaults & Irani Cafes",
       category: "Fort",
       image:
-        "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/309179823.jpg?k=53b55d5d5014e77e4629c97d3232f10512c5cdd8ec11bac91946ca4caac3dd19&o=",
     },
     {
       name: "Matunga",
       subtitle: "Authentic Chai & Morning Breakfasts",
       category: "Matunga",
       image:
-        "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     },
     {
       name: "Versova",
       subtitle: "Harbor Sunsets & Quiet Addas",
       category: "Versova",
       image:
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/81/5b/59/very-clean-beach-thanks.jpg?w=900&h=500&s=1",
     },
   ];
 
