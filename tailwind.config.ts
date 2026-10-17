@@ -10,47 +10,82 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Warm Cream / Sand Canvas
+        canvas: {
+          50: "#FCFAF7",
+          100: "#FAF7F2",
+          200: "#F4EFEA",
+          300: "#ECE5DC",
+          400: "#DFD6C8",
+          500: "#CFC3B0",
+        },
+        // Forest / Spruce Teal (signature brand color from theme)
         brand: {
-          50: "#f0fdfa",
-          100: "#ccfbf1",
-          200: "#99f6e4",
-          300: "#5eead4",
-          400: "#2dd4bf",
-          500: "#14b8a6",
-          600: "#0d9488",
-          700: "#0f766e",
-          800: "#115e59",
-          900: "#134e4a",
-          950: "#042f2e",
+          50: "#EFF8F7",
+          100: "#D9EFEB",
+          200: "#B4DDD6",
+          300: "#7EC2B7",
+          400: "#4D9F94",
+          500: "#2F8479",
+          600: "#266B66", // primary teal
+          700: "#1F5753",
+          800: "#1A4542",
+          900: "#153835",
+          950: "#0B2120",
+        },
+        // Warm Terracotta / Clay / Rust
+        terracotta: {
+          50: "#FCF5F2",
+          100: "#FAECE4",
+          200: "#F5D6C7",
+          300: "#EBB59D",
+          400: "#DF8D6C",
+          500: "#D96B43", // primary warm rust
+          600: "#C85A32",
+          700: "#A84422",
+          800: "#8B371B",
+          900: "#722E17",
         },
         sunset: {
-          50: "#fff7ed",
-          100: "#ffedd5",
-          200: "#fed7aa",
-          300: "#fdba74",
-          400: "#fb923c",
-          500: "#f97316",
-          600: "#ea580c",
-          700: "#c2410c",
-          800: "#9a3412",
-          900: "#7c2d12",
+          50: "#FCF5F2",
+          100: "#FAECE4",
+          500: "#D96B43",
+          600: "#C85A32",
         },
-        gem: {
-          amber: "#f59e0b",
-          coral: "#ff6b6b",
-          emerald: "#10b981",
-          violet: "#8b5cf6",
-          sky: "#0ea5e9",
+        // Deep Charcoal / Ink
+        ink: {
+          50: "#F5F6F8",
+          100: "#E9EBEF",
+          200: "#D0D4DD",
+          300: "#A4ACB9",
+          400: "#6B7280",
+          500: "#4B5563",
+          600: "#374151",
+          700: "#2B303A", // primary dark
+          800: "#22262F", // footer dark
+          900: "#1A1D24",
+          950: "#121419",
+        },
+        sand: {
+          50: "#FAF9F6",
+          100: "#F5F2EB",
+          200: "#EFECE6",
+          300: "#E5DFC",
+          400: "#D8D0C5",
         },
       },
       fontFamily: {
-        sans: ["var(--font-outfit)", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-outfit)", "Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
         display: ["var(--font-cal)", "var(--font-outfit)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 4px 20px -2px rgba(0, 0, 0, 0.06)",
-        card: "0 10px 30px -4px rgba(15, 118, 110, 0.08)",
-        glow: "0 0 25px -5px rgba(249, 115, 22, 0.25)",
+        soft: "0 2px 10px rgba(43, 48, 58, 0.04)",
+        card: "0 8px 24px -4px rgba(43, 48, 58, 0.08)",
+        glow: "0 0 20px -3px rgba(217, 107, 67, 0.25)",
+      },
+      borderRadius: {
+        "2xl": "1.25rem",
+        "3xl": "1.75rem",
       },
     },
   },

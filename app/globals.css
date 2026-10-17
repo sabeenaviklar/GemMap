@@ -6,27 +6,31 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 38 35% 97%; /* #FAF7F2 warm cream */
+    --foreground: 220 15% 18%; /* #272B33 deep charcoal */
   }
 
   .dark {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
+    --background: 220 18% 10%; /* #14171D dark canvas */
+    --foreground: 40 25% 95%; /* #F8F6F2 cream text */
   }
 }
 
 body {
   color: hsl(var(--foreground));
-  background: hsl(var(--background));
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #FAF7F2;
+  font-family: var(--font-outfit), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
+}
+
+.dark body {
+  background-color: #14171D;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -34,30 +38,32 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(15, 118, 110, 0.25);
+  background: rgba(38, 107, 102, 0.25);
   border-radius: 9999px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(45, 212, 191, 0.25);
+  background: rgba(126, 194, 183, 0.25);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(15, 118, 110, 0.5);
+/* Theme accent banners */
+.theme-strip {
+  height: 40px;
+  background: linear-gradient(90deg, #266B66 0%, #266B66 65%, #D96B43 65%, #D96B43 78%, #2B303A 78%, #2B303A 100%);
 }
 
-/* Glassmorphism helpers */
+/* Glassmorphism helpers with warm cream touch */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 221, 212, 0.7);
 }
 
 .dark .glass-panel {
-  background: rgba(15, 23, 42, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(22, 25, 31, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -72,25 +78,12 @@ body {
 .leaflet-popup-content-wrapper {
   padding: 0;
   overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  border-radius: 1.25rem;
+  box-shadow: 0 12px 30px -4px rgba(43, 48, 58, 0.16);
+  border: 1px solid #EFECE6;
 }
 
 .leaflet-popup-content {
   margin: 0 !important;
   line-height: inherit;
-}
-
-/* Pulse animation for gem score */
-@keyframes gem-pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-.animate-gem {
-  animation: gem-pulse 2.5s infinite ease-in-out;
 }

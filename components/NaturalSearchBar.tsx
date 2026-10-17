@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search, Sparkles, X, ArrowRight, CornerDownLeft } from "lucide-react";
+import { Search, Sparkles, X, ArrowRight } from "lucide-react";
 import { ParsedSearchFilters } from "@/lib/nlpSearch";
 
 interface NaturalSearchBarProps {
@@ -17,7 +17,7 @@ export default function NaturalSearchBar({
   onSearch,
   parsedChips = [],
   onRemoveChip,
-  placeholder = "Try: 'cheap quiet place to study near Andheri under 150' or 'sunset viewpoint'...",
+  placeholder = "Enter a locality or query to find local secrets (e.g. cheap quiet place to study near Bandra under 150)...",
 }: NaturalSearchBarProps) {
   const [query, setQuery] = useState(initialQuery);
   const [loading, setLoading] = useState(false);
@@ -54,10 +54,10 @@ export default function NaturalSearchBar({
     <div className="w-full space-y-2.5">
       <form
         onSubmit={handleSubmit}
-        className="relative flex items-center w-full rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/20 transition-all"
+        className="relative flex items-center w-full rounded-full bg-white dark:bg-slate-900 border border-[#E2DDD4] dark:border-slate-800 shadow-sm focus-within:border-brand-600 focus-within:ring-2 focus-within:ring-brand-500/15 transition-all p-1.5"
       >
-        <div className="pl-4 text-brand-600 dark:text-brand-400">
-          <Sparkles className="w-5 h-5 text-amber-500" />
+        <div className="pl-4 text-slate-400">
+          <Search className="w-5 h-5 text-slate-400" />
         </div>
 
         <input
@@ -65,32 +65,31 @@ export default function NaturalSearchBar({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
-          className="w-full px-3 py-3.5 bg-transparent text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none"
+          className="w-full px-3 py-2.5 bg-transparent text-sm text-ink-900 dark:text-white placeholder:text-slate-400 focus:outline-none"
         />
 
-        <div className="pr-2 flex items-center gap-1.5">
+        <div className="pr-1 flex items-center gap-1.5">
           {query && (
             <button
               type="button"
               onClick={handleClear}
-              className="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="p-1 rounded-full text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
             >
               <X className="w-4 h-4" />
             </button>
           )}
 
+          {/* Theme Signature Circular Search Button */}
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-teal-700 hover:opacity-95 text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm transition-all"
+            aria-label="Search"
+            className="w-10 h-10 rounded-full bg-terracotta-500 hover:bg-terracotta-600 text-white flex items-center justify-center transition-all shadow-sm hover:scale-105 shrink-0"
           >
             {loading ? (
               <span className="animate-spin text-xs">🌀</span>
             ) : (
-              <>
-                <span>Search</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </>
+              <Search className="w-4 h-4" />
             )}
           </button>
         </div>
@@ -98,21 +97,21 @@ export default function NaturalSearchBar({
 
       {/* Removable detected filter chips */}
       {parsedChips && parsedChips.length > 0 && (
-        <div className="flex flex-wrap items-center gap-1.5 pt-1">
-          <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-amber-500" /> Detected Filters:
+        <div className="flex flex-wrap items-center gap-1.5 pt-1 px-2">
+          <span className="text-[11px] font-semibold text-slate-500 flex items-center gap-1">
+            <Sparkles className="w-3 h-3 text-terracotta-500" /> Detected Filters:
           </span>
           {parsedChips.map((chip) => (
             <span
               key={chip.id}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 border border-brand-500/20"
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-[#E2F3F0] text-brand-700 border border-[#B4DDD6]"
             >
               <span>{chip.label}</span>
               {onRemoveChip && (
                 <button
                   type="button"
                   onClick={() => onRemoveChip(chip.id)}
-                  className="hover:text-red-500 ml-0.5"
+                  className="hover:text-red-600 ml-0.5"
                 >
                   <X className="w-3 h-3" />
                 </button>

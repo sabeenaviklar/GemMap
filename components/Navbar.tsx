@@ -26,60 +26,80 @@ export default function Navbar() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-panel border-b border-teal-500/10 dark:border-teal-500/10 transition-colors">
+    <header className="sticky top-0 z-50 w-full bg-[#FAF7F2] dark:bg-[#16191F] border-b border-[#EAE5DD] dark:border-slate-800 transition-colors">
+      {/* Signature Multi-Color Accent Strip from theme image */}
+      <div className="w-full h-2 flex">
+        <div className="w-7/12 bg-brand-600" />
+        <div className="w-2/12 bg-terracotta-500" />
+        <div className="w-3/12 bg-ink-700" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-500 to-sunset-500 flex items-center justify-center text-white shadow-md shadow-brand-500/25 group-hover:scale-105 transition-transform">
-            <Sparkles className="w-5 h-5 text-amber-200" />
+        {/* Brand Logo with circular vintage/retro emblem */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 rounded-full bg-white dark:bg-slate-900 border-2 border-brand-600 flex items-center justify-center text-brand-600 shadow-sm group-hover:scale-105 transition-transform">
+            <Sparkles className="w-4 h-4 text-terracotta-500" />
           </div>
           <div>
-            <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white flex items-center gap-1">
+            <span className="font-extrabold text-xl tracking-tight text-ink-700 dark:text-white">
               Hidden<span className="text-brand-600 dark:text-brand-400">Gems</span>
-            </span>
-            <span className="hidden sm:block text-[10px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-              City Discovery
             </span>
           </div>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1.5">
+        {/* Desktop Nav with terracotta active indicator */}
+        <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="/explore"
-            className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-1.5 ${
-              isActive("/explore")
-                ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300"
-                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+            href="/"
+            className={`text-sm font-semibold transition-all relative py-1 ${
+              isActive("/")
+                ? "text-ink-900 dark:text-white font-bold"
+                : "text-slate-600 dark:text-slate-300 hover:text-ink-900"
             }`}
           >
-            <Compass className="w-4 h-4 text-brand-500" />
-            Explore Map
+            Discover
+            {isActive("/") && (
+              <span className="absolute bottom-0 inset-x-0 h-0.5 bg-terracotta-500 rounded-full" />
+            )}
+          </Link>
+
+          <Link
+            href="/explore"
+            className={`text-sm font-semibold transition-all relative py-1 ${
+              isActive("/explore")
+                ? "text-ink-900 dark:text-white font-bold"
+                : "text-slate-600 dark:text-slate-300 hover:text-ink-900"
+            }`}
+          >
+            Explore Cities
+            {isActive("/explore") && (
+              <span className="absolute bottom-0 inset-x-0 h-0.5 bg-terracotta-500 rounded-full" />
+            )}
           </Link>
 
           <Link
             href="/places/new"
-            className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-1.5 ${
+            className={`text-sm font-semibold transition-all relative py-1 ${
               isActive("/places/new")
-                ? "bg-brand-50 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300"
-                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                ? "text-ink-900 dark:text-white font-bold"
+                : "text-slate-600 dark:text-slate-300 hover:text-ink-900"
             }`}
           >
-            <PlusCircle className="w-4 h-4 text-sunset-500" />
-            Add a Place
+            Add a Gem
+            {isActive("/places/new") && (
+              <span className="absolute bottom-0 inset-x-0 h-0.5 bg-terracotta-500 rounded-full" />
+            )}
           </Link>
 
           {user?.role === "admin" && (
             <Link
               href="/admin"
-              className={`px-3.5 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-1.5 ${
-                isActive("/admin")
-                  ? "bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300"
-                  : "text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50/50 dark:hover:bg-red-950/20"
-              }`}
+              className={`text-sm font-semibold transition-all relative py-1 text-red-600 hover:text-red-700`}
             >
-              <ShieldAlert className="w-4 h-4 text-red-500" />
               Admin
+              {isActive("/admin") && (
+                <span className="absolute bottom-0 inset-x-0 h-0.5 bg-red-500 rounded-full" />
+              )}
             </Link>
           )}
         </nav>
@@ -90,10 +110,10 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             aria-label="Toggle Theme"
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-full text-slate-600 dark:text-slate-300 hover:bg-[#EFECE6] dark:hover:bg-slate-800 transition-colors"
           >
             {theme === "light" ? (
-              <Moon className="w-4 h-4 text-slate-700" />
+              <Moon className="w-4 h-4 text-ink-700" />
             ) : (
               <Sun className="w-4 h-4 text-amber-400" />
             )}
@@ -104,51 +124,37 @@ export default function Navbar() {
             <div className="flex items-center gap-2">
               <Link
                 href="/profile"
-                className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 bg-white/70 dark:bg-slate-900/70 transition-all shadow-sm"
+                className="flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-[#E2DDD4] dark:border-slate-800 bg-white dark:bg-slate-900 text-ink-700 dark:text-white shadow-sm hover:border-brand-600 transition-all"
               >
-                <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">
                   {user.name.charAt(0).toUpperCase()}
                 </div>
-                <div className="hidden sm:block text-left leading-none">
-                  <div className="text-xs font-semibold text-slate-900 dark:text-white truncate max-w-[100px]">
-                    {user.name.split(" ")[0]}
-                  </div>
-                  <div className="text-[10px] text-amber-600 dark:text-amber-400 font-medium flex items-center gap-0.5 mt-0.5">
-                    <Award className="w-2.5 h-2.5" />
-                    {user.reputation} pts
-                  </div>
+                <div className="text-xs font-bold text-ink-700 dark:text-white truncate max-w-[90px]">
+                  {user.name.split(" ")[0]}
                 </div>
               </Link>
 
               <button
                 onClick={logout}
                 title="Log out"
-                className="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
+                className="p-2 rounded-full text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
               >
                 <LogOut className="w-4 h-4" />
               </button>
             </div>
           ) : (
-            <div className="flex items-center gap-2">
-              <Link
-                href="/login"
-                className="px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/register"
-                className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-brand-600 to-teal-700 text-white hover:opacity-95 shadow-sm transition-all"
-              >
-                Join Free
-              </Link>
-            </div>
+            <Link
+              href="/login"
+              className="px-5 py-2 rounded-full text-xs font-bold bg-ink-700 hover:bg-ink-800 text-white shadow-sm transition-all"
+            >
+              Login / Sign Up
+            </Link>
           )}
 
           {/* Mobile hamburger button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-sand-200"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -157,30 +163,37 @@ export default function Navbar() {
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-4 pt-3 pb-5 space-y-2">
+        <div className="md:hidden border-t border-[#EAE5DD] dark:border-slate-800 bg-[#FAF7F2] dark:bg-[#16191F] px-4 pt-3 pb-5 space-y-2">
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-[#EFECE6]"
+          >
+            Discover
+          </Link>
           <Link
             href="/explore"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-950/50"
+            className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-[#EFECE6]"
           >
-            <Compass className="w-4 h-4 text-brand-500" />
-            Explore Map & Spots
+            <Compass className="w-4 h-4 text-brand-600" />
+            Explore Cities & Map
           </Link>
           <Link
             href="/places/new"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-950/50"
+            className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-[#EFECE6]"
           >
-            <PlusCircle className="w-4 h-4 text-sunset-500" />
+            <PlusCircle className="w-4 h-4 text-terracotta-500" />
             Add a Hidden Gem
           </Link>
           {user && (
             <Link
               href="/profile"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-950/50"
+              className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-[#EFECE6]"
             >
-              <UserIcon className="w-4 h-4 text-brand-500" />
+              <UserIcon className="w-4 h-4 text-brand-600" />
               My Profile & Saved Lists
             </Link>
           )}
@@ -188,7 +201,7 @@ export default function Navbar() {
             <Link
               href="/admin"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30"
+              className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-red-600 hover:bg-red-50"
             >
               <ShieldAlert className="w-4 h-4 text-red-500" />
               Admin Moderation

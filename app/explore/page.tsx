@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   Map as MapIcon,
@@ -17,7 +17,7 @@ import DynamicMap from "@/components/Map/DynamicMap";
 import NaturalSearchBar from "@/components/NaturalSearchBar";
 import { ParsedSearchFilters } from "@/lib/nlpSearch";
 
-export default function ExplorePage() {
+function ExploreContent() {
   const searchParams = useSearchParams();
 
   // Initial state derived from query params
@@ -330,5 +330,20 @@ export default function ExplorePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ExplorePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-[60vh] flex flex-col items-center justify-center gap-3 text-slate-400">
+          <Loader2 className="w-8 h-8 animate-spin text-brand-500" />
+          <span className="text-xs font-semibold">Loading Explore Map...</span>
+        </div>
+      }
+    >
+      <ExploreContent />
+    </Suspense>
   );
 }
